@@ -1,5 +1,11 @@
 package com.codedifferently;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public class Solution {
     /**
      * You will be given an integer called number and an array called possibleFamilyMembers
@@ -18,6 +24,18 @@ public class Solution {
      * @return
      */
     public Integer[] numberFamily(Integer number, Integer[] possibleFamilyMembers){
-        return null;
+        List<Integer> familyMembers = new ArrayList<>();
+        familyMembers.add(number);
+        Arrays.sort(possibleFamilyMembers,Collections.reverseOrder());
+        Integer currentFamilyMember = number;
+        for (int i = 0; i < possibleFamilyMembers.length; i++) {
+            if(Math.abs(currentFamilyMember-possibleFamilyMembers[i])  == 1 ) {
+                familyMembers.add(possibleFamilyMembers[i]);
+                currentFamilyMember = possibleFamilyMembers[i];
+            }
+        }
+
+        Collections.sort(familyMembers);
+        return familyMembers.toArray(new Integer[0]);
     }
 }
